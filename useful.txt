@@ -1,0 +1,12 @@
+os.mkdir(dir)
+os.system('start cmd /k echo Hello, World!')  # opens the command prompt and runs the command
+os.system('npm start')
+
+# Used for exception handling
+# Also can be used like if a variable is defined do the thing else do something.
+try:
+    skipInstall
+except NameError:
+    print("no skipInstall")
+else:
+    print(skipInstall)
