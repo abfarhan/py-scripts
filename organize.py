@@ -1,0 +1,35 @@
+
+import os
+from pathlib import Path
+
+SUBDIRECTORIES = {
+    "DOCUMENTS": ['.pdf','.rtf','.txt'],
+    "AUDIO": ['.m4a','.m4b','.mp3'],
+    "VIDEOS": ['.mov','.avi','.mp4'],
+    "IMAGES": ['.jpg','.jpeg','.png']
+}
+
+def pickDirectory(val):
+    for category, suffixes in SUBDIRECTORIES.items():
+        for suffix in suffixes:
+            if suffix == val:
+                return category
+    return 'MISC'
+
+print(pickDirectory('.txt'))
+
+def organizeDirectory():
+    for item in os.scandir():
+        if item.is_dir():
+            continue
+        filePath = Path(item)
+        fileType = filePath.suffix.lower()
+        if fileType == '.py':
+            continue
+        directory = pickDirectory(fileType)
+        directoryPath = Path(directory)
+        if directoryPath.is_dir() != True:
+            directoryPath.mkdir()
+        filePath.rename(directoryPath.joinpath(filePath))
+
+organizeDirectory()
