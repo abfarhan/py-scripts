@@ -21,6 +21,10 @@ If "%1"=="" (
             python create_react_script.py %2
             REM python E:\z-Python\py-script\create_react_script.py %2
         )
+        if "%1" == "js" (
+            python create_js_script.py %2
+            REM python E:\z-Python\py-script\create_js_script.py %2
+        )
     )
 )
 REM pause
